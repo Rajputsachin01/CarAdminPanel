@@ -514,7 +514,9 @@ Link {
   font-weight: 500;
   background-color: #5E5ADB;
   color: white;
-  border-radius: 6px;
+  border-radius: 4px;
+  border:none;
+  font-size:15px
 }
 /* card css */
 .dash-details {
@@ -614,4 +616,7 @@ Link {
   font-optical-sizing: auto;
   font-size: 14px;
   font-weight: 500;
+}
+.mybtn{
+  background-color: #5E5ADB;
 }
