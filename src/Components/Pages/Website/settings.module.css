@@ -1,0 +1,226 @@
+.settingSection {
+  font-family: "Inter", serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  width: 100%;
+}
+.Commoncolor {
+  color: #5e5adb !important;
+}
+.Commoncolorbg {
+  background-color: #5e5adb !important;
+}
+.promoAddonsTxt {
+  font-weight: 600 !important;
+  font-family: "Inter", serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-size: 14px;
+  white-space: nowrap;
+  /* margin-top: 20px; */
+}
+.addonstxt {
+  margin-right: 10px;
+}
+.settingTopInputs {
+  width: 142px;
+  height: 32px;
+  border-radius: 6px;
+  color: #fff;
+  border: 1px solid #969191;
+  margin-right: 10px;
+}
+.setingapplybtn {
+  margin-right: 20px;
+  width: 51px;
+  height: 22px;
+  border-radius: 4px;
+  padding: 2px 8px 2px 8px;
+  background-color: #4945c4 ;
+  color: #fff;
+  font-size: 12px;
+  line-height: 18px;
+  letter-spacing: 3%;
+}
+.updatesettingbtn {
+  /* margin-right: 20px; */
+  width: 60px;
+  height: 22px;
+  border-radius: 4px;
+  padding: 4px -10px 4px 16px;
+  background-color: #4945c4;
+  color: #fff;
+  font-size: 12px;
+  line-height: 18px;
+  font-family: "Inter", serif;
+  letter-spacing: 3%;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+}
+.dateinputSeting {
+  margin-right: 10px;
+  margin-left: 10px;
+  font-size: 13px;
+  height: 32px !important;
+  /* padding: 8px; */
+  padding-left: 2px;
+  border: 1px solid gray ;
+  border-radius: 6px;
+}
+.nameInputSeting {
+  margin-right: 16px;
+}
+.settignapplybtnlast {
+  margin-left: 10px;
+}
+.leftTopSettings {
+  width: 575px;
+}
+.rightTopSettings {
+  width: 491px;
+}
+.questionpart {
+  background-color: #EAF1FF;
+  border-radius: 8px;
+  padding: 15px;
+}
+.faqchkbox {
+  margin: 0px !important;
+  height: 15px !important;
+  margin-right: 6px !important;
+}
+.faqSection {
+  margin-top: 15px;
+  /* font-size: 20px; */
+}
+
+.tabsHere {
+  background-color: #e9edf5;
+  list-style-type: none;
+  width: 275px;
+  height: 38px;
+  margin-top: 20px;
+  border-radius: 6px;
+  padding: 2px;
+  gap: 6px;
+  text-align: center;
+  padding-bottom: 40px !important;
+}
+.faqt {
+  margin-top: 4px;
+  margin-left: 5px;
+  width: 56px;
+  height: 31px;
+  border-radius: 4px;
+  padding: 4px 10px 4px 10px;
+  gap: 10px;
+  background-color: #fff;
+}
+.faqt span {
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 2%;
+  text-align: center;
+  font-family: "Inter", serif;
+}
+.pcode span {
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 2%;
+  text-align: center;
+  font-family: "Inter", serif;
+}
+.addon span {
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 2%;
+  text-align: center;
+  font-family: "Inter", serif;
+}
+.pcode {
+  margin-top: 4px;
+  width: 114px;
+  height: 31px;
+  border-radius: 4px;
+  padding: 4px 10px 4px 10px;
+  gap: 10px;
+  background-color: #fff;
+}
+.addon {
+  margin-top: 4px;
+  width: 80px;
+  height: 31px;
+  border-radius: 4px;
+  padding: 4px 10px 4px 10px;
+  gap: 10px;
+  background-color: #fff;
+}
+.tabsHere li a {
+  text-decoration: none !important;
+}
+.faqinput{
+  margin-top:10px;
+}
+.faqRightpart{
+  margin-top: 20px !important;
+  width: fit-content;
+}
+.topSettingSecton {
+  display: flex;
+  flex-wrap: nowrap; /* Prevent wrapping */
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  width: 100%;
+  /* width: 100%; */
+}
+
+.col-sm-6 {
+  display: flex;
+  align-items: center;
+}
+
+.settingTopInputs, .dateinputSeting {
+  width: 142px;
+  height: 32px;
+  border-radius: 6px;
+  color: black;
+  border: 1px solid #969191;
+  margin-right: 10px;
+}
+
+.dateinputSeting {
+  width: 102px;
+}
+
+.setingapplybtn {
+  margin-right: 20px;
+  width: 51px;
+  height: 22px;
+  border-radius: 4px;
+  padding: 2px 8px 2px 8px;
+  background-color: #4945c4;
+  color: #fff;
+  font-size: 12px;
+  line-height: 18px;
+  letter-spacing: 3%;
+}
+
+.addonstxt {
+  margin-right: 10px;
+}
+.txtclass{
+  height: 100px;
+}
+.accordinclass{
+  margin-top: 10px;
+  
+}
+.myclass{
+  background-color: #EAF1FF;
+}
+.adondiv{
+  margin-left: 79px;
+}
+.faqsize{
+  font-size: 20px;
+}

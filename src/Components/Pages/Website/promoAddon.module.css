@@ -1,0 +1,41 @@
+.deleteBtn{
+    background-color: red !important;
+    color: #fff;
+}
+.inactivebtn{
+    background-color: black !important;
+    color: #fff;
+    margin-left: 10px !important;
+    margin-right: 10px !important;
+}
+.updatebtn{
+    background-color: blue !important;
+    color: #fff;
+}
+.promoTable{
+    border: 0px !important;
+}
+.carlisttable thead tr {
+    background-color: #FCFCFD;
+  }
+  
+  .carlisttable th {
+    font-size: 12px;
+    font-weight: 500;
+    font-family: "Inter", serif;
+    font-optical-sizing: auto;
+  }
+  
+  .carlisttable td {
+    font-size: 14px;
+    font-weight: 400;
+    font-family: "Inter", serif;
+    font-optical-sizing: auto;
+  }
+  
+  .carlisttable th,
+  .carlisttable td {
+    height: 72px;
+    vertical-align: middle;
+    text-align: start;
+  }
