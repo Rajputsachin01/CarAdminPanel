@@ -58,7 +58,7 @@ const Users = () => {
             <th>#</th>
             <th>Phone Number</th>
             <th>Email</th>
-            <th>Full Name</th>
+            <th>First Name</th>
             <th>Last Name</th>
             <th>Paid</th>
             <th></th>
@@ -66,9 +66,6 @@ const Users = () => {
         </thead>
         <tbody>
           {usersData?.map((user, index) => {
-            const nameParts = user.fullName.split(" ");
-            const firstName = nameParts[0];
-            const lastName = nameParts.slice(1).join(" ");
             return (
               <tr key={index} onClick={() => openUserModal(user)}>
                 <td data-label="S.No">{index + 1}</td>

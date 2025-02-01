@@ -4,6 +4,7 @@ import Navbar from "./Layout/Navbar";
 import Sidebar from "./Layout/Sidebar";
 import "./App.css";
 import MainSettings from "./Components/Pages/Settings/MainSettings";
+import BookingDetails from "./Components/Pages/Website/BookingDetails";
 
 // Lazy load components
 const Dashboard = React.lazy(() => import("./Components/Dashboard/Dashboard"));
@@ -36,6 +37,7 @@ function App() {
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/MainWebite" element={<MainWebite />} />
               <Route path="/MainSettings" element={<MainSettings />} />
+              <Route path="/bookingDetails" element={<BookingDetails />} />
             </Routes>
           </React.Suspense>
         </div>

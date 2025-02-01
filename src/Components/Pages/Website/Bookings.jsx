@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { FiRefreshCcw } from "react-icons/fi";
+import { useNavigate } from "react-router-dom";
 
 const userData = [
   { pnr: 2, firstName: "John", lastName: "Ajinh", type: "Intercity", city: "Luxury", amount: "Unavailable", pickUpDate: "20-02-2025", pickUpTime: "03:00" },
@@ -9,6 +10,7 @@ const userData = [
 ];
 
 const Bookings = () => {
+  const navigate = useNavigate();
   const [selectedUser, setSelectedUser] = useState(null);
   const openUserModal = (user) => {
     setSelectedUser(user);
@@ -17,6 +19,10 @@ const Bookings = () => {
   const closeUserModal = () => {
     setSelectedUser(null);
   };
+
+  const bookingDetail = ()=>{
+    navigate('/bookingDetails')
+  }
 
   return (
     <div>
@@ -47,7 +53,7 @@ const Bookings = () => {
               <td>{user.pnr}</td>
               <td>{user.pickUpDate}</td>
               <td>{user.pickUpTime}</td>
-              <td><BsThreeDotsVertical /></td>
+              <td><BsThreeDotsVertical  onClick={bookingDetail}/></td>
             </tr>
           ))}
         </tbody>
@@ -113,3 +119,4 @@ const Bookings = () => {
 };
 
 export default Bookings;
+
