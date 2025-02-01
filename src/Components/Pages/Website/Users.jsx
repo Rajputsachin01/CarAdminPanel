@@ -1,16 +1,13 @@
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
-
-const userData = [
-  { phoneNumber: "6985968958", email: "physioamnish@gmail.com", firstName: "Amnish", lastName: "Birla", paid: true },
-  { phoneNumber: "7854123698", email: "johndoe@example.com", firstName: "John", lastName: "Doe", paid: false },
-  { phoneNumber: "6987452365", email: "janesmith@example.com", firstName: "Jane", lastName: "Smith", paid: true },
-  { phoneNumber: "6598741236", email: "michaelbrown@example.com", firstName: "Michael", lastName: "Brown", paid: false },
-  { phoneNumber: "6985231478", email: "emilydavis@example.com", firstName: "Emily", lastName: "Davis", paid: true }
-];
+import { baseUrl } from "../../../config";
+import { getAuthHeader } from "../../../utils/authHelper";
+import { toast, ToastContainer } from "react-toastify";
 
 const Users = () => {
   const [selectedUser, setSelectedUser] = useState(null);
+  const [usersData, setUsersData] = useState([]);
 
   const openUserModal = (user) => {
     setSelectedUser(user);
@@ -20,34 +17,72 @@ const Users = () => {
     setSelectedUser(null);
   };
 
+  useEffect(() => {
+    fetchUsers()
+  }, [])
+  const fetchUsers = async () => {
+    try {
+      const res = await axios.post(`${baseUrl}/user/findAll`, {}, {
+        headers: getAuthHeader(),
+      })
+      console.log(res.data);
+      if (res.data.status) {
+        toast.success(res.data.message)
+        setUsersData(res.data.data)
+      }
+      else {
+        toast.error(res.data.message)
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+
+  useEffect(() => {
+    if (usersData?.fullName) {
+      const nameParts = userData.fullName.split(" ");
+      setFirstName(nameParts[0]); // First name
+      setLastName(nameParts.slice(1).join(" ")); // Last name (middle + last)
+    }
+  }, [usersData]);
+
   return (
     <div>
+      <ToastContainer />
       <table className="table car-list-table">
         <thead>
           <tr>
             <th>#</th>
             <th>Phone Number</th>
             <th>Email</th>
-            <th>First Name</th>
+            <th>Full Name</th>
             <th>Last Name</th>
             <th>Paid</th>
             <th></th>
           </tr>
         </thead>
         <tbody>
-          {userData.map((user, index) => (
-            <tr key={index} onClick={() => openUserModal(user)}>
-              <td data-label="S.No">{index + 1}</td>
-              <td data-label="mobile">{user.phoneNumber}</td>
-              <td data-label="Email" className="emaildata">{user.email}</td>
-              <td data-label="First Name">{user.firstName}</td>
-              <td data-label="Last Name">{user.lastName}</td>
-              <td data-label="Paid">{user.paid ? "Yes" : "No"}</td>
-              <td data-label="Icon">
-                <BsThreeDotsVertical />
-              </td>
-            </tr>
-          ))}
+          {usersData?.map((user, index) => {
+            const nameParts = user.fullName.split(" ");
+            const firstName = nameParts[0];
+            const lastName = nameParts.slice(1).join(" ");
+            return (
+              <tr key={index} onClick={() => openUserModal(user)}>
+                <td data-label="S.No">{index + 1}</td>
+                <td data-label="mobile">{user?.number}</td>
+                <td data-label="Email" className="emaildata">{user?.email}</td>
+                <td data-label="First Name">{user.fullName ? user.fullName.split(" ")[0] : "-"}</td>
+                <td data-label="Last Name">{user.fullName ? user.fullName.split(" ")[1] : "-"}</td>
+                <td data-label="Paid">{user?.paid ? "Yes" : "No"}</td>
+                <td data-label="Icon">
+                  <BsThreeDotsVertical />
+                </td>
+              </tr>
+            )
+          })}
         </tbody>
       </table>
       {selectedUser && (
@@ -61,22 +96,22 @@ const Users = () => {
               <div className="modal-body">
                 <form>
                   <div className="row">
-                    <div className="col-md-12">
+                  <div className="col-md-12 ">
+                      <label htmlFor="firstName" className="form-label">Full Name</label>
+                      <input type="text" className="form-control" id="firstName" value={selectedUser.fullName} readOnly />
+                    </div>
+                    <div className="col-md-12 mt-3">
                       <label htmlFor="phoneNumber" className="form-label">Phone Number</label>
-                      <input type="text" className="form-control" id="phoneNumber" value={selectedUser.phoneNumber} readOnly />
+                      <input type="text" className="form-control" id="phoneNumber" value={selectedUser.number} readOnly />
                     </div>
                     <div className="col-md-12 mt-3">
                       <label htmlFor="email" className="form-label">Email</label>
                       <input type="text" className="form-control" id="email" value={selectedUser.email} readOnly />
                     </div>
-                    <div className="col-md-6 mt-3">
-                      <label htmlFor="firstName" className="form-label">First Name</label>
-                      <input type="text" className="form-control" id="firstName" value={selectedUser.firstName} readOnly />
-                    </div>
-                    <div className="col-md-6 mt-3">
+                    {/* <div className="col-md-6 mt-3">
                       <label htmlFor="lastName" className="form-label">Last Name</label>
                       <input type="text" className="form-control" id="lastName" value={selectedUser.lastName} readOnly />
-                    </div>
+                    </div> */}
                     <div className="col-md-12 mt-3">
                       <label htmlFor="paid" className="form-label">Paid</label>
                       <input type="text" className="form-control" id="paid" value={selectedUser.paid ? "Yes" : "No"} readOnly />
@@ -92,7 +127,8 @@ const Users = () => {
             </div>
           </div>
         </div>)}
-        </div>
-      )}
+    </div>
+  )
+}
 
 export default Users;
