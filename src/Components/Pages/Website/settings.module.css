@@ -5,10 +5,10 @@
   width: 100%;
 }
 .Commoncolor {
-  color: #5e5adb !important;
+  color: #0d6efd  !important;
 }
 .Commoncolorbg {
-  background-color: #5e5adb !important;
+  background-color: #0d6efd !important;
 }
 .promoAddonsTxt {
   font-weight: 600 !important;
@@ -23,7 +23,7 @@
   margin-right: 10px;
 }
 .settingTopInputs {
-  width: 142px;
+  width: 130px;
   height: 32px;
   border-radius: 6px;
   color: #fff;
@@ -31,12 +31,12 @@
   margin-right: 10px;
 }
 .setingapplybtn {
-  margin-right: 20px;
+  /* margin-right: 20px; */
   width: 51px;
   height: 22px;
   border-radius: 4px;
   padding: 2px 8px 2px 8px;
-  background-color: #4945c4 ;
+  background-color: #0d6efd !important ;
   color: #fff;
   font-size: 12px;
   line-height: 18px;
@@ -48,13 +48,14 @@
   height: 22px;
   border-radius: 4px;
   padding: 4px -10px 4px 16px;
-  background-color: #4945c4;
+  background-color: #0d6efd !important;
   color: #fff;
   font-size: 12px;
   line-height: 18px;
   font-family: "Inter", serif;
   letter-spacing: 3%;
-  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 1px rgba(0, 0, 0, 0.2);
+  border: none;
 }
 .dateinputSeting {
   margin-right: 10px;
@@ -180,7 +181,7 @@
 }
 
 .settingTopInputs, .dateinputSeting {
-  width: 142px;
+  width: 130px;
   height: 32px;
   border-radius: 6px;
   color: black;
@@ -193,7 +194,7 @@
 }
 
 .setingapplybtn {
-  margin-right: 20px;
+  /* margin-right: 20px; */
   width: 51px;
   height: 22px;
   border-radius: 4px;
@@ -219,7 +220,7 @@
   background-color: #EAF1FF;
 }
 .adondiv{
-  margin-left: 79px;
+  margin-left: 70px;
 }
 .faqsize{
   font-size: 20px;

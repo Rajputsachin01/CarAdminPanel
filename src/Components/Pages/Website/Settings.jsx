@@ -5,10 +5,8 @@ import { Tab, Tabs } from "react-bootstrap";
 import Addons from "./Addons";
 import Promocode from "./Promocode";
 import Faqs from "./Faqs";
-
 const Settings = () => {
   const [activeTab, setActiveTab] = useState(null);
-
   return (
     <div className={style.settingSection}>
       {/* Top Settings Section */}
