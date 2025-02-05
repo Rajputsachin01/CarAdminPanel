@@ -3,6 +3,7 @@ import { FaArrowDown } from "react-icons/fa";
 import { IoFilterSharp } from "react-icons/io5";
 import { MdCurrencyRupee } from "react-icons/md";
 import { PiDotsThreeOutlineVerticalFill } from "react-icons/pi";
+
 import axios from "axios";
 import { baseUrl } from "../../../config";
 import { toast } from "react-toastify";
@@ -294,9 +295,11 @@ const Cars = () => {
                       <input
                         type="number"
                         className="form-control"
+
                         id="localRate"
                         placeholder="00"
                         name="priceHour"
+
                         onChange={inputHandler}
                       />
                     </div>
@@ -310,9 +313,11 @@ const Cars = () => {
                       <input
                         type="number"
                         className="form-control"
+
                         id="airportRate"
                         placeholder="00"
                         name="flatRate"
+
                         onChange={inputHandler}
                       />
                     </div>
@@ -327,9 +332,11 @@ const Cars = () => {
                       <input
                         type="number"
                         className="form-control"
+
                         id="intercityRate"
                         placeholder="00"
                         name="pricePerKm"
+
                         onChange={inputHandler}
                       />
                     </div>
@@ -472,6 +479,7 @@ const Cars = () => {
                       <label>Price per Hour (₹)</label>
                       <input
                         className="form-control"
+
                         value={editCar.priceHour}
                         onChange={(e) =>
                           setEditCar((prev) => ({
@@ -485,8 +493,10 @@ const Cars = () => {
                   {editCar.bookingType === "Airport Transfer" && (
                     <div className="col-12 mb-3">
                       <label>Flat Rate (₹)</label>
+
                       <input
                         className="form-control"
+
                         value={editCar.flatRate}
                         onChange={(e) =>
                           setEditCar((prev) => ({
@@ -509,6 +519,7 @@ const Cars = () => {
                             pricePerKm: e.target.value,
                           }))
                         }
+
                       />
                     </div>
                   )}
@@ -561,6 +572,7 @@ const Cars = () => {
           </div>
         </div>
       )}
+
     </div>
   );
 };

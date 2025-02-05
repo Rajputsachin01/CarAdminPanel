@@ -22,7 +22,7 @@ const Users = () => {
   }, [])
   const fetchUsers = async () => {
     try {
-      const res = await axios.post(`${baseUrl}/user/findAll`, {}, {
+      const res = await axios.get(`${baseUrl}/user/search-user`, {}, {
         headers: getAuthHeader(),
       })
       console.log(res.data);

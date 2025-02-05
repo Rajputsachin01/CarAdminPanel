@@ -13,12 +13,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 
 const SidebarMenuItem = ({ item, isOpen, isActive }) => (
-  <li className={`menu-item ${isActive ? "active" : "inactive"}`}>
-    <Link to={item.path} className="menu-link">
+  <Link to={item.path} className="menu-link">
+    <li className={`menu-item ${isActive ? "active" : "inactive"}`}>
+
       <span className="menu-icon">{item.icon}</span>
       {isOpen && <span className="menu-text">{item.label}</span>}
-    </Link>
-  </li>
+
+    </li>
+  </Link>
 );
 function Sidebar({ isOpen }) {
   const location = useLocation();

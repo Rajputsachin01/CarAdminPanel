@@ -5,35 +5,10 @@ import { Tab, Tabs } from "react-bootstrap";
 import Addons from "./Addons";
 import Promocode from "./Promocode";
 import Faqs from "./Faqs";
-import axios from "axios";
-import { baseUrl } from "../../../config";
 
 const Settings = () => {
   const [activeTab, setActiveTab] = useState(null);
-  const [promoCode, setPromoCode] = useState({
-    first_Date: "",
-    second_Date: "",
-    uniqueCode: "",
-  });
-  useEffect(() => {
-    const promocode = async () => {
-      try {
-        const response = await axios.post(
-          `${baseUrl}/promoCode/create`,
-          promoCode
-        );
-        console.log(response.data);
-      } catch (error) {}
-    };
-    promocode();
-  }, []);
-  const addPromoCode = (e) => {
-    e.preventDefault();
-    console.log(promoCode, "promocode data");
-  };
-  const handleChange = (e) => {
-    setPromoCode({ ...promoCode, [e.target.name]: e.target.value });
-  };
+
   return (
     <div className={style.settingSection}>
       {/* Top Settings Section */}

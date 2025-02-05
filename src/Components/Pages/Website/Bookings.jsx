@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { FiRefreshCcw } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
-
+import { baseUrl } from "../../../config";
+import { toast } from "react-toastify";
+import { format } from "date-fns";
 const userData = [
   {
     pnr: 2,
@@ -37,19 +40,39 @@ const userData = [
 ];
 
 const Bookings = () => {
+  const [bookingsData,setBookingsData] = useState([])
   const navigate = useNavigate();
   const [selectedUser, setSelectedUser] = useState(null);
-  const openUserModal = (user) => {
-    setSelectedUser(user);
+  const openUserModal = (booking) => {
+    setSelectedUser(booking);
   };
 
   const closeUserModal = () => {
     setSelectedUser(null);
   };
 
-  const bookingDetail = () => {
-    navigate("/bookingDetails");
-  };
+
+  useEffect(()=>{
+    fetchBookings()
+  },[])
+
+  const fetchBookings  = async ()=>{
+    try {
+      const res= await axios.get(`${baseUrl}/booking/findAll`);
+    if(res.data.status){
+      toast.success(res.data.message);
+      setBookingsData(res.data.data)
+    }
+    else{
+      toast.error(res.data.message)
+    }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  const bookingDetail = ()=>{
+    navigate('/bookingDetails')
+  }
 
   return (
     <div>
@@ -62,7 +85,7 @@ const Bookings = () => {
             <th>Type</th>
             <th>City</th>
             <th>Amount</th>
-            <th>PNR</th>
+            <th>Booking Status</th>
             <th>Pick Up Date</th>
             <th>Pick Up Time</th>
             <th>
@@ -71,30 +94,21 @@ const Bookings = () => {
           </tr>
         </thead>
         <tbody>
-          {userData.map((user, index) => (
-            <tr key={index} onClick={() => openUserModal(user)}>
-              <td>{user.pnr}</td>
-              <td>{user.firstName}</td>
-              <td>{user.lastName}</td>
-              <td>{user.type}</td>
-              <td>{user.city}</td>
-              <td
-                className={
-                  user.amount === "Unavailable"
-                    ? "text-danger"
-                    : user.amount === "Maintenance"
-                    ? "maintenance"
-                    : ""
-                }
-              >
-                {user.amount}
-              </td>
-              <td>{user.pnr}</td>
-              <td>{user.pickUpDate}</td>
-              <td>{user.pickUpTime}</td>
-              <td>
-                <BsThreeDotsVertical onClick={bookingDetail} />
-              </td>
+          {bookingsData?.map((booking, index) => (
+            <tr key={index} onClick={() => openUserModal(booking)}>
+              <td>{booking.pnr}</td>
+              <td>{booking.fullName?booking.fullName.split(" ")[0] : "-"}</td>
+              <td>{booking.fullName?booking.fullName.split(" ")[1] : "-"}</td>
+              <td>{booking.bookingType}</td>
+              <td>{booking.city?booking.city:"-"}</td>
+              <td className={booking.amount === "Unavailable" ? "text-danger" : booking.amount === "Maintenance" ? "maintenance" : ""}>{booking.amount}</td>
+              <td>{booking.bookingStatus}</td>
+              {/* <td>{format(new Date(booking.pickupDate), "dd/MM/yyyy hh:mm a")}</td> */}
+              <td>{new Date(booking.pickupDate).toISOString().split("T")[0]}</td>
+              {/* <td>{booking.pickupDate}</td> */}
+              <td>{new Date(booking.pickupDate).toISOString().split("T")[1]}</td>
+              <td><BsThreeDotsVertical  onClick={bookingDetail}/></td>
+
             </tr>
           ))}
         </tbody>
