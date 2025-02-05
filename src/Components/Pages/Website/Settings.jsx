@@ -1,58 +1,101 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import style from "../../Pages/Website/settings.module.css";
 import { FaAngleDown } from "react-icons/fa";
 import { Tab, Tabs } from "react-bootstrap";
 import Addons from "./Addons";
 import Promocode from "./Promocode";
 import Faqs from "./Faqs";
+import axios from "axios";
+import { baseUrl } from "../../../config";
 
 const Settings = () => {
   const [activeTab, setActiveTab] = useState(null);
-
+  const [promoCode, setPromoCode] = useState({
+    first_Date: "",
+    second_Date: "",
+    uniqueCode: "",
+  });
+  useEffect(() => {
+    const promocode = async () => {
+      try {
+        const response = await axios.post(
+          `${baseUrl}/promoCode/create`,
+          promoCode
+        );
+        console.log(response.data);
+      } catch (error) {}
+    };
+    promocode();
+  }, []);
+  const addPromoCode = (e) => {
+    e.preventDefault();
+    console.log(promoCode, "promocode data");
+  };
+  const handleChange = (e) => {
+    setPromoCode({ ...promoCode, [e.target.name]: e.target.value });
+  };
   return (
     <div className={style.settingSection}>
       {/* Top Settings Section */}
       <div className={`mb-4 mt-6 row ${style.topSettingSecton}`}>
-  <div className="col-sm-6 d-flex align-items-center">
-    <span className={`${style.Commoncolor} ${style.promoAddonsTxt}`}>
-      Promo Code
-    </span>
-    <input type="date" className={style.dateinputSeting} value="2025-05-15" />
-    <span> &gt; </span>
-    <input type="date" className={style.dateinputSeting} value="2025-05-15" />
-    <input
-      type="text"
-      placeholder="   Unique Code "
-      className={style.settingTopInputs}
-    />
-    <button className={`btn ${style.setingapplybtn}`}>Apply</button>
-  </div>
+        <div className="col-sm-6 d-flex align-items-center">
+          <span className={`${style.Commoncolor} ${style.promoAddonsTxt}`}>
+            Promo Code
+          </span>
+          <input
+            type="date"
+            className={style.dateinputSeting}
+            name="first_Date"
+            value={promoCode.first_Date}
+            onChange={handleChange}
+          />
+          <span> &gt; </span>
+          <input
+            type="date"
+            className={style.dateinputSeting}
+            name="second_Date"
+            value={promoCode.second_Date}
+            onChange={handleChange}
+          />
+          <input
+            type="text"
+            placeholder="   Unique Code "
+            name="uniqueCode"
+            value={promoCode.uniqueCode}
+            className={style.settingTopInputs}
+            onChange={handleChange}
+          />
+          <button
+            className={`btn ${style.setingapplybtn}`}
+            onClick={addPromoCode}
+          >
+            Add
+          </button>
+        </div>
 
-  <div className={`col-sm-6 d-flex align-items-center ${style.adondiv}`}>
-      <span
-        className={`${style.promoAddonsTxt} ${style.Commoncolor} ${style.addonstxt}`}
-      >
-        Add Ons
-      </span>
-    <input
-      type="text"
-      placeholder="   Name"
-      className={`${style.nameInputSeting} ${style.settingTopInputs}`}
-    />
-    <input
-      type="text"
-      placeholder="   Costing"
-      className={style.settingTopInputs}
-    />
-    <button
-      className={`btn ${style.setingapplybtn} ${style.settignapplybtnlast}`}
-    >
-      Apply
-    </button>
-  </div>
-</div>
-
-
+        <div className={`col-sm-6 d-flex align-items-center ${style.adondiv}`}>
+          <span
+            className={`${style.promoAddonsTxt} ${style.Commoncolor} ${style.addonstxt}`}
+          >
+            Add Ons
+          </span>
+          <input
+            type="text"
+            placeholder="   Name"
+            className={`${style.nameInputSeting} ${style.settingTopInputs}`}
+          />
+          <input
+            type="text"
+            placeholder="   Costing"
+            className={style.settingTopInputs}
+          />
+          <button
+            className={`btn ${style.setingapplybtn} ${style.settignapplybtnlast}`}
+          >
+            Add
+          </button>
+        </div>
+      </div>
 
       {/* Inclusion, Exclusion, and T&C Section */}
       <div className="row">
@@ -90,23 +133,44 @@ const Settings = () => {
 
       {/* FAQ Section */}
       <div className={style.faqSection}>
-        <span className={`${style.Commoncolor} ${style.promoAddonsTxt} ${style.faqsize}`}>
+        <span
+          className={`${style.Commoncolor} ${style.promoAddonsTxt} ${style.faqsize}`}
+        >
           FAQs?
         </span>
-        <div  className={`row ${style.accordinclass}`}>
+        <div className={`row ${style.accordinclass}`}>
           <div className={`col-sm-8 mt-2 ${style.questionpart}`}>
-          <div className="accordion accordion-flush" id="accordionFlushExample">
-  <div className="accordion-item">
-    <h2 className="accordion-header" id="flush-headingOne">
-      <button className={`accordion-button collapsed ${style.myclass }`} type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-        Example Text For Question?
-      </button>
-    </h2>
-    <div id="flush-collapseOne" className="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-      <div className="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the first item's accordion body.</div>
-    </div>
-  </div>
-</div>
+            <div
+              className="accordion accordion-flush"
+              id="accordionFlushExample"
+            >
+              <div className="accordion-item">
+                <h2 className="accordion-header" id="flush-headingOne">
+                  <button
+                    className={`accordion-button collapsed ${style.myclass}`}
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#flush-collapseOne"
+                    aria-expanded="false"
+                    aria-controls="flush-collapseOne"
+                  >
+                    Example Text For Question?
+                  </button>
+                </h2>
+                <div
+                  id="flush-collapseOne"
+                  className="accordion-collapse collapse"
+                  aria-labelledby="flush-headingOne"
+                  data-bs-parent="#accordionFlushExample"
+                >
+                  <div className="accordion-body">
+                    Placeholder content for this accordion, which is intended to
+                    demonstrate the <code>.accordion-flush</code> class. This is
+                    the first item's accordion body.
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
 
           {/* Checkbox Section */}
@@ -136,11 +200,13 @@ const Settings = () => {
         </div>
       </div>
 
-
-      <ul className={` nav nav-pills mb-3 mt-4  ${style.tabsHere}`} id="pills-tab" role="tablist">
+      <ul
+        className={` nav nav-pills mb-3 mt-4  ${style.tabsHere}`}
+        id="pills-tab"
+        role="tablist"
+      >
         <li className="nav-item" role="presentation">
           <button
-       
             className={` nav-link active  ${style.faqt}`}
             id="pills-home-tab"
             data-bs-toggle="pill"
@@ -166,7 +232,6 @@ const Settings = () => {
             aria-selected="false"
           >
             <span>Promo Codes</span>
-            
           </button>
         </li>
         <li className="nav-item" role="presentation">
@@ -180,7 +245,7 @@ const Settings = () => {
             aria-controls="pills-contact"
             aria-selected="false"
           >
-           <span> Add Ons</span>
+            <span> Add Ons</span>
           </button>
         </li>
       </ul>
@@ -191,7 +256,7 @@ const Settings = () => {
           role="tabpanel"
           aria-labelledby="pills-home-tab"
         >
-         <Faqs/>
+          <Faqs />
         </div>
         <div
           class="tab-pane fade"
@@ -199,7 +264,7 @@ const Settings = () => {
           role="tabpanel"
           aria-labelledby="pills-profile-tab"
         >
-          <Promocode/>
+          <Promocode />
         </div>
         <div
           class="tab-pane fade"
@@ -207,7 +272,7 @@ const Settings = () => {
           role="tabpanel"
           aria-labelledby="pills-contact-tab"
         >
-          <Addons/>
+          <Addons />
         </div>
       </div>
     </div>
