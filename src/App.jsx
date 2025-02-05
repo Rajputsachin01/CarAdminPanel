@@ -9,7 +9,9 @@ import BookingDetails from "./Components/Pages/Website/BookingDetails";
 // Lazy load components
 const Dashboard = React.lazy(() => import("./Components/Dashboard/Dashboard"));
 const Login = React.lazy(() => import("./Components/Auth/Login"));
-const MainWebite = React.lazy(() => import("./Components/Pages/Website/MainWebite"));
+const MainWebite = React.lazy(() =>
+  import("./Components/Pages/Website/MainWebite")
+);
 
 function App() {
   const [isSidebarOpen, setSidebarOpen] = useState(true);
