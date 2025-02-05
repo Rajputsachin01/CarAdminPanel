@@ -49,8 +49,8 @@ const navigate = useNavigate()
   const [carData, setCarData] = useState({
     "title": "",
     "category": "",
-    "bookingType": "Local",
-    "carType": "ev",
+    "bookingType": "",
+    "carType": "p",
     "image": "",
     "capacity": "",
     "luaggage": "",
@@ -74,7 +74,7 @@ const navigate = useNavigate()
     const formData = new FormData();
     formData.append('title', carData.title);
     formData.append('category', carData.category);
-    formData.append('bookingType', carData.bookingType);
+    formData.append('bookingType', bookingType);
     formData.append('carType', carData.carType);
     formData.append('image', carData.image);
     formData.append('capacity', carData.capacity);
@@ -365,13 +365,13 @@ const navigate = useNavigate()
                         onChange={(e) => setBookingType(e.target.value)}
                       >
                         <option value="">Select Booking Type</option>
-                        <option value="local">Local</option>
-                        <option value="airport">Airport Transfer</option>
-                        <option value="intercity">Intercity</option>
+                        <option value="Local">Local</option>
+                        <option value="Airport Transfer">Airport Transfer</option>
+                        <option value="Intercity">Intercity</option>
                       </select>
                     </div>
 
-                    {bookingType === 'local' && (
+                    {bookingType === 'Local' && (
                       <div className="mt-3">
                         <label htmlFor="localRate" className="form-label">Local <MdCurrencyRupee />/hour</label>
                         <input
@@ -385,7 +385,7 @@ const navigate = useNavigate()
                       </div>
                     )}
 
-                    {bookingType === 'airport' && (
+                    {bookingType === 'Airport Transfer' && (
                       <div className="mt-3">
                         <label htmlFor="airportRate" className="form-label">Flat Rate (Airport Transfer)</label>
                         <input
@@ -399,7 +399,7 @@ const navigate = useNavigate()
                       </div>
                     )}
 
-                    {bookingType === 'intercity' && (
+                    {bookingType === 'Intercity' && (
                       <div className="mt-3">
                         <label htmlFor="intercityRate" className="form-label">Intercity <MdCurrencyRupee />/km</label>
                         <input
